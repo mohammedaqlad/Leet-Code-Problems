@@ -1,4 +1,4 @@
-lass Solution {
+class Solution {
     public boolean isPalindrome(int x) {
         long vn=0;
         int st=x;
