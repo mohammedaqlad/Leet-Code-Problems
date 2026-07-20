@@ -1,0 +1,43 @@
+class Solution {
+    public int[] findEvenNumbers(int[] digits) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int[] count = new int[10];
+
+        // Count frequency of each digit
+        for (int d : digits) {
+            count[d]++;
+        }
+
+        // Check every 3-digit even number
+        for (int num = 100; num <= 998; num += 2) {
+            int[] temp = new int[10];
+            int x = num;
+
+            temp[x % 10]++;
+            x /= 10;
+            temp[x % 10]++;
+            x /= 10;
+            temp[x % 10]++;
+
+            boolean possible = true;
+            for (int i = 0; i < 10; i++) {
+                if (temp[i] > count[i]) {
+                    possible = false;
+                    break;
+                }
+            }
+
+            if (possible) {
+                result.add(num);
+            }
+        }
+
+        // Convert ArrayList to int[]
+        int[] ans = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            ans[i] = result.get(i);
+        }
+
+        return ans;
+    }
+}
